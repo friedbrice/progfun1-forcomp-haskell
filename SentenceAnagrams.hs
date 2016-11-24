@@ -48,9 +48,9 @@ sentenceOccurrences :: Sentence -> Occurrences
 sentenceOccurrences = foldr (combine . wordOccurrences) Map.empty
 
 dictionaryByOccurrences :: Map.Map Occurrences [Word]
--- ^ Associates to each 'Occurrences' the list of dictionary 'Word's
---   that generate that 'Occurrences'. Inverse mapping of
---   'wordOccurrences' restricted to 'dictionary'.
+-- ^ Inverse mapping of 'wordOccurrences' restricted to 'dictionary'.
+--   Associates to each 'Occurrences' the list of dictionary 'Word's
+--   that generate that 'Occurrences'.
 dictionaryByOccurrences = Map.fromList $ map getFiber allOccurrences
   where
     occurrencesByWord = map (\w -> (w, wordOccurrences w)) dictionary
